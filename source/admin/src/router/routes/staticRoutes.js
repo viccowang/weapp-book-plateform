@@ -20,7 +20,7 @@ export const constantRouterMap = [
         path: 'dash',
         name: 'Dashboard',
         component: _import_('Dashboard/index'),
-        meta: { title: '主页', icon: 'zvpfont icon-home', noCache: false } }
+        meta: { title: '主页', icon: 'yuehufont icon-home', noCache: false } }
     ]
   },
   {
@@ -32,7 +32,7 @@ export const constantRouterMap = [
         path: 'personal-settings',
         name: 'PersonalSettings',
         component: _import_('Layout/Components/Settings/index'),
-        meta: { title: '个性化配置', icon: 'zvpfont icon-custom-settings', noCache: true }
+        meta: { title: '个性化配置', icon: 'yuehufont icon-custom-settings', noCache: true }
       }
     ]
   },
@@ -40,8 +40,8 @@ export const constantRouterMap = [
     path: '/modify-password',
     component: _import_('Layout/Components/ModifyPassword/index'),
     hidden: true,
-    meta: { title: '修改密码', icon: 'zvpfont icon-home', noCache: true }
+    meta: { title: '修改密码', icon: 'yuehufont icon-home', noCache: true }
   },
-  { path: '/401', component: _import_('others/401'), hidden: true },
-  { path: '*', component: _import_('others/404'), hidden: true }
+  { path: '/401', component: _import_('Others/401'), hidden: true },
+  { path: '*', component: _import_('Others/404'), hidden: true }
 ]

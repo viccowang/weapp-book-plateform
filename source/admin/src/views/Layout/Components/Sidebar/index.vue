@@ -5,7 +5,7 @@
       v-show="!sidebarState.isHidden"
       :style="{background: systemThemeColor}">
         <!-- <div class="logo">System LOGO</div> -->
-        <div class="slide-handler zvpfont icon-tuozhuai" @click="slideSidebar"></div>
+        <div class="slide-handler yuehufont icon-tuozhuai" @click="slideSidebar"></div>
         <el-menu mode="vertical" class="vertical-menu"
                   :default-active="$route.path"
                   :router="true"

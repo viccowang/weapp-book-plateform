@@ -3,7 +3,7 @@ import { BASE_PER_FIX_KEY } from '@/utils/basePer'
 import { setLocalStorage, getLocalStorage } from '@/utils/session'
 import { Message } from 'element-ui'
 
-const SIDEBAR_EXPANDED_WIDTH = '180px' // 展开宽度
+const SIDEBAR_EXPANDED_WIDTH = '140px' // 展开宽度
 const SIDEBAR_COLLAPSED_WIDTH = '60px' // 折叠宽度
 const HEADER_HEIGHT = '35px' // 头部(header)高度
 const TAGTAB_HEIGHT = '30px' // 标签页(tagTabs)高度

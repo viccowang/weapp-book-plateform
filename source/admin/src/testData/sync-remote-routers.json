@@ -7,7 +7,7 @@
             "path": "/form",
             "meta": {
                 "title": "Table List",
-                "icon": "zvpfont icon-menu-list"
+                "icon": "yuehufont icon-menu-list"
             },
             "children": [{
                 "path": "table-list",
@@ -15,7 +15,7 @@
                 "component": "Form/List/index",
                 "meta": {
                     "title": "Table List",
-                    "icon": "zvpfont icon-menu-list"
+                    "icon": "yuehufont icon-menu-list"
                 }
             }]
         },
@@ -23,7 +23,7 @@
             "path": "/map",
             "meta": {
                 "title": "Map",
-                "icon": "zvpfont icon-map"
+                "icon": "yuehufont icon-map"
             },
             "children": [
                 {
@@ -32,7 +32,7 @@
                     "component": "Map/BaiduMap/index",
                     "meta": {
                         "title": "Baidu Map",
-                        "icon": "zvpfont icon-dizhi1"
+                        "icon": "yuehufont icon-dizhi1"
                     }
                 },
                 {
@@ -41,7 +41,7 @@
                     "component": "Map/HeatMap/index",
                     "meta": {
                         "title": "Heat Map",
-                        "icon": "zvpfont icon-icheatmap"
+                        "icon": "yuehufont icon-icheatmap"
                     }
                 }
             ]
@@ -50,7 +50,7 @@
             "path": "/utils",
             "meta": {
                 "title": "Utils",
-                "icon": "zvpfont icon-tools"
+                "icon": "yuehufont icon-tools"
             },
             "children": [
                 {
@@ -59,7 +59,7 @@
                     "component": "Utils/NextPage/index",
                     "meta": {
                         "title": "NextPage",
-                        "icon": "zvpfont icon-page"
+                        "icon": "yuehufont icon-page"
                     }
                 },
                 {
@@ -68,7 +68,7 @@
                     "component": "Utils/Contextmenu/index",
                     "meta": {
                         "title": "Contextmenu",
-                        "icon": "zvpfont icon-menu3caidan3"
+                        "icon": "yuehufont icon-menu3caidan3"
                     }
                 }
             ]

@@ -21,7 +21,7 @@
                     </el-dropdown-menu>
                 </el-dropdown>
             </li>
-            <li class="zvpfont icon-logout" @click="logout">注销</li>
+            <li class="yuehufont icon-logout" @click="logout">注销</li>
         </ul>
         </div>
     </el-header>
@@ -132,7 +132,7 @@ export default {
                 }
             }
 
-            .zvpfont:before {
+            .yuehufont:before {
                 margin-right:5px;
             }
 
