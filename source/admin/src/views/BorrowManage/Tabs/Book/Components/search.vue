@@ -12,7 +12,7 @@
                 </el-form-item>
            </el-col>
             <el-col :span="6">
-                <el-form-item label="库存" prop="sex">
+                <el-form-item label="区域" prop="sex">
                     <el-select v-model="searchForm.sex" placeholder="请选择">
                         <el-option label="男" value="0">男</el-option>
                         <el-option label="女" value="1">女</el-option>

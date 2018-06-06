@@ -12,7 +12,7 @@ export const aysncRoutesMap = [
   {
     path: '/borrow-management',
     component: Layout,
-    meta: { title: 'Borrow Management', icon: 'yuehufont icon-yuedureading19', role: ['admin'] },
+    meta: { title: '借阅', icon: 'yuehufont icon-yuedureading19', role: ['admin'] },
     children: [
       {
         path: '',
@@ -25,7 +25,7 @@ export const aysncRoutesMap = [
   {
     path: '/book-management',
     component: Layout,
-    meta: { title: 'Books Management', icon: 'yuehufont icon-cc-book', role: ['admin'] },
+    meta: { title: '书籍', icon: 'yuehufont icon-cc-book', role: ['admin'] },
     children: [
       {
         path: '',
@@ -38,7 +38,7 @@ export const aysncRoutesMap = [
   {
     path: '/user-management',
     component: Layout,
-    meta: { title: 'Users Management', icon: 'yuehufont icon-user-group', role: ['admin'] },
+    meta: { title: '读者', icon: 'yuehufont icon-user-group', role: ['admin'] },
     children: [
       {
         path: '',
