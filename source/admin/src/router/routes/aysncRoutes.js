@@ -18,72 +18,72 @@ export const aysncRoutesMap = [
         path: 'table-list',
         name: 'TableList',
         component: _import_('Form/List/index'),
-        meta: { title: 'Table List', icon: 'zvpfont icon-menu-list' }
-      }
-    ]
-  },
-  {
-    path: '/charts',
-    component: Layout,
-    meta: { title: 'Charts', icon: 'zvpfont icon-chart2', role: ['user'] },
-    children: [
-      {
-        path: 'echart',
-        name: 'Charts',
-        component: _import_('Charts/index'),
-        meta: { title: 'Chart', icon: 'zvpfont icon-chart2' }
-      }
-    ]
-  },
-  {
-    path: '/video',
-    component: Layout,
-    meta: { title: 'Video', icon: 'zvpfont icon-video', role: ['user'] },
-    children: [
-      {
-        path: '',
-        name: 'VideoPlayer',
-        component: _import_('Video/index'),
-        meta: { title: 'Video', icon: 'zvpfont icon-video' }
-      }
-    ]
-  },
-  {
-    path: '/map',
-    component: Layout,
-    meta: { title: 'Map', icon: 'zvpfont icon-map', role: ['user'] },
-    children: [
-      {
-        path: 'bmap',
-        name: 'BaiduMapCom',
-        component: _import_('Map/BaiduMap/index'),
-        meta: { title: 'Baidu Map', icon: 'zvpfont icon-dizhi1' }
-      },
-      {
-        path: 'heat-map',
-        name: 'HeatMap',
-        component: _import_('Map/HeatMap/index'),
-        meta: { title: 'Heat Map', icon: 'zvpfont icon-icheatmap' }
-      }
-    ]
-  },
-  {
-    path: '/utils',
-    component: Layout,
-    meta: { title: 'Utils', icon: 'zvpfont icon-tools', role: ['user'] },
-    children: [
-      {
-        path: 'nextpage',
-        name: 'NextPage',
-        component: _import_('Utils/NextPage/index'),
-        meta: { title: 'NextPage', icon: 'zvpfont icon-page' }
-      },
-      {
-        path: 'contextmenu',
-        name: 'Contextmenu',
-        component: _import_('Utils/Contextmenu/index'),
-        meta: { title: 'Contextmenu', icon: 'zvpfont icon-menu3caidan3' }
+        meta: { title: '借阅管理', icon: 'zvpfont icon-menu-list' }
       }
     ]
   }
+  // {
+  //   path: '/charts',
+  //   component: Layout,
+  //   meta: { title: 'Charts', icon: 'zvpfont icon-chart2', role: ['user'] },
+  //   children: [
+  //     {
+  //       path: 'echart',
+  //       name: 'Charts',
+  //       component: _import_('Charts/index'),
+  //       meta: { title: 'Chart', icon: 'zvpfont icon-chart2' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/video',
+  //   component: Layout,
+  //   meta: { title: 'Video', icon: 'zvpfont icon-video', role: ['user'] },
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'VideoPlayer',
+  //       component: _import_('Video/index'),
+  //       meta: { title: 'Video', icon: 'zvpfont icon-video' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/map',
+  //   component: Layout,
+  //   meta: { title: 'Map', icon: 'zvpfont icon-map', role: ['user'] },
+  //   children: [
+  //     {
+  //       path: 'bmap',
+  //       name: 'BaiduMapCom',
+  //       component: _import_('Map/BaiduMap/index'),
+  //       meta: { title: 'Baidu Map', icon: 'zvpfont icon-dizhi1' }
+  //     },
+  //     {
+  //       path: 'heat-map',
+  //       name: 'HeatMap',
+  //       component: _import_('Map/HeatMap/index'),
+  //       meta: { title: 'Heat Map', icon: 'zvpfont icon-icheatmap' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/utils',
+  //   component: Layout,
+  //   meta: { title: 'Utils', icon: 'zvpfont icon-tools', role: ['user'] },
+  //   children: [
+  //     {
+  //       path: 'nextpage',
+  //       name: 'NextPage',
+  //       component: _import_('Utils/NextPage/index'),
+  //       meta: { title: 'NextPage', icon: 'zvpfont icon-page' }
+  //     },
+  //     {
+  //       path: 'contextmenu',
+  //       name: 'Contextmenu',
+  //       component: _import_('Utils/Contextmenu/index'),
+  //       meta: { title: 'Contextmenu', icon: 'zvpfont icon-menu3caidan3' }
+  //     }
+  //   ]
+  // }
 ]
