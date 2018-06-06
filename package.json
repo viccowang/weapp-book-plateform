@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "element-ui": "^2.3.8",
+    "element-ui": "^2.4.0",
     "moment": "^2.20.1",
     "v-contextmenu": "^2.5.1",
     "video.js": "^6.10.0",
