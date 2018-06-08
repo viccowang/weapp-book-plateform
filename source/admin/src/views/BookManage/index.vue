@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav-button>
-          <el-button>创建图书</el-button>
+          <!-- <el-button>创建图书</el-button> -->
           <el-button>批量删除</el-button>
         </nav-button>
         <common-wrapper>

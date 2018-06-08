@@ -1,10 +1,12 @@
 <template>
     <div class="container">
       <el-tabs v-model="activeTab" @tab-click="handleTabClick">
-        <el-tab-pane label="按书籍查询" name="book">
+        <el-tab-pane name="book">
+            <span slot="label"><i class="label-icon yuehufont icon-orderform"></i>按书籍查询</span>
            <tabs-book-query />
         </el-tab-pane>
-        <el-tab-pane label="按用户查询" name="user">
+        <el-tab-pane name="user">
+          <span slot="label"><i class="label-icon yuehufont icon-login_user"></i>按用户查询</span>
             <tabs-user-query />
         </el-tab-pane>
       </el-tabs>
@@ -45,5 +47,10 @@ export default {
 .container {
   padding:0 10px;
   box-sizing: border-box;
+
+  .label-icon {
+    font-size:14px;
+    margin-right:5px;
+  }
 }
 </style>
