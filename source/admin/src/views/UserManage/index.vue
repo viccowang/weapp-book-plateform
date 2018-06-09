@@ -40,6 +40,7 @@
         <edit-reader
           :isShow.sync="isEditUserDialogVisible"
           :user.sync="editUser"
+          @query="queryAfterEdit"
         />
     </div>
 </template>
@@ -82,6 +83,10 @@ export default {
       this.searchParams = searchParams
       const queryParams = this.getQueryParams(searchParams)
       this.getUserQueryList(queryParams)
+    },
+    queryAfterEdit () {
+      const params = this.getQueryParams(this.searchParams)
+      this.queryList(params)
     },
     async getUserQueryList (queryParams) {
       const result = await getReaderList(queryParams)

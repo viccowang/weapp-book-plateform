@@ -1,6 +1,7 @@
 <template>
     <el-dialog
         title="修改用户信息"
+        width="640px"
         :visible.sync="isShowDialog"
         @close="closeDialog"
     >
@@ -106,6 +107,7 @@ export default {
           type: 'success'
         })
         this.closeDialog()
+        this.$emit('query')
       } catch (error) {
         this.$message.error(error)
       }
