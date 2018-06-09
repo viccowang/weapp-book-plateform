@@ -1,22 +1,33 @@
 <template>
     <div>
         <common-wrapper>
-          <tabs-book-query-search></tabs-book-query-search>
+          <tabs-book-query-search @search="queryList"></tabs-book-query-search>
         </common-wrapper>
         <common-wrapper>
             <common-table size="small">
                 <template slot="table">
                 <el-table :data="tableData" stripe >
-                    <el-table-column prop="name" label="书名"></el-table-column>
-                    <el-table-column prop="name" label="ISBN"></el-table-column>
-                    <el-table-column prop="name" label="总量"></el-table-column>
-                    <el-table-column prop="address" label="库存"></el-table-column>
-                    <el-table-column prop="date" label="借阅评价"></el-table-column>
-                    <el-table-column label="操作" width="150"></el-table-column>
+                    <el-table-column prop="title" label="书名"></el-table-column>
+                    <el-table-column prop="isbn13" label="ISBN"></el-table-column>
+                    <el-table-column prop="borrowTotle" label="借阅次数"></el-table-column>
+                    <el-table-column prop="lastBorrowUserName" label="最后借阅人"></el-table-column>
+                    <el-table-column prop="lastBorrowDate" label="最后借阅日期"></el-table-column>
+                    <el-table-column label="详情" width="150">
+                      <template slot-scope="scope">
+                        <el-button size="mini" round icon="yuehufont icon-shouquan" @click.stop="showDetail(scope.$index, scope.row)">查看详细列表</el-button>
+                      </template>
+                    </el-table-column>
                 </el-table>
                 </template>
                 <template slot="pagination">
-                  <el-pagination background  layout="prev, pager, next" :total="100"></el-pagination>
+                   <el-pagination
+                    background
+                    layout="total, prev, pager, next"
+                    :current-page.sync="pagination.pageNum"
+                    :page-size="pagination.pageSize"
+                    :total="pagination.total"
+                    @current-change="changePage"
+                    ></el-pagination>
                 </template>
             </common-table>
         </common-wrapper>
@@ -27,22 +38,57 @@
 import CommonWrapper from '@/components/commonWrapper'
 import CommonTable from '@/components/commonTable'
 import TabsBookQuerySearch from './Components/search'
+import BookBorrowDetail from './Components/detail'
+// api
+import { getBorrowBookQueryList } from '@/api/borrowBook'
 
 export default {
   name: 'TabsBookQuery',
   data () {
     return {
-      comp: this,
-      isShowSearch: false,
+      searchParams: {},
       tableData: [],
-      btnData: []
+      pagination: { // 翻页数据
+        pageNum: 1,
+        pageSize: 10,
+        total: 0
+      }
     }
   },
-  mounted () {
-  },
   methods: {
-    create () { },
-    remove () { }
+    getQueryParams (searchParams) {
+      return {
+        ...searchParams,
+        ...this.pagination
+      }
+    },
+    queryList (searchParams) {
+      this.searchParams = searchParams
+      const queryParams = this.getQueryParams(searchParams)
+      this.getBookQueryList(queryParams)
+    },
+    async getBookQueryList (queryParams) {
+      const result = await getBorrowBookQueryList(queryParams)
+      if (result) {
+        this.tableData = result.list
+        this.pagination.pageNum = result.pageNum
+        this.pagination.pageSize = result.pageSize
+        this.pagination.total = result.total
+      }
+    },
+    showDetail (idx, row) {
+      this.$nextPage({
+        title: `[${row.title}]借阅详情`,
+        props: {
+          book: row
+        },
+        component: BookBorrowDetail
+      })
+    },
+    changePage (pageNum) {
+      this.pagination.pageNum = pageNum
+      this.getBookQueryList(this.searchParams)
+    }
   },
   components: {
     CommonWrapper,

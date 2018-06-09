@@ -10,7 +10,6 @@ const store = {
     userId: '',
     userAccount: '',
     userName: '',
-    userStatus: '',
     avatar: '../static/myAvatar200.png', // static
     token: getToken(),
     roles: null // 权限应该是返回个数组对象吧?
@@ -31,16 +30,12 @@ const store = {
       state.userId = data.userId
       state.userAccount = data.userAccount
       state.userName = data.userName
-      state.userStatus = data.userStatus
       state.roles = data.roles // static roles
-      // state.avatar = data.avatar
-      // state.roles = data.roles
     },
     RESET_USERINFO (state, data) {
       state.userId = ''
       state.userAccount = ''
       state.userName = ''
-      state.userStatus = ''
       state.avatar = ''
       state.roles = null
     }
@@ -59,8 +54,7 @@ const store = {
       return new Promise((resolve, reject) => {
         commonLogin(params)
           .then(res => {
-            // 假装有TOKEN, 将Token暂时存为userId
-            commit('SET_TOKEN', res.userId)
+            commit('SET_TOKEN', res.token)
             resolve()
           }).catch(err => {
             reject(err)
@@ -103,6 +97,7 @@ const store = {
             // TODO: 暂时这里把权限写死, 用户暂时无权限列表
             // TODO: 需要暂时配置一个最高管理员权限
             // res.roles = res.userAccount === 'sysadmin' ? ['admin'] : ['user']
+            res.roles = ['admin']
             commit('SET_USERINFO', res)
             resolve(res)
           }).catch(err => {

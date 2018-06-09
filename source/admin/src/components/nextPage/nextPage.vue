@@ -106,6 +106,14 @@ export default {
       padding:10px;
       box-sizing: border-box;
       border-bottom:1px solid $base-light-color;
+
+      .el-breadcrumb__item {
+
+        span[role=link] {
+          cursor: pointer;
+        }
+
+      }
     }
 
     .main {

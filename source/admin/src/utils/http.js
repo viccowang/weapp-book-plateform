@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 import { BASE_PER_FIX_URL } from './baseUrlPerFix.js'
+import { getToken } from '@/utils/auth'
 
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
@@ -10,7 +11,8 @@ const basePerfix = BASE_PER_FIX_URL
 // request interceptors
 axios.interceptors.request.use(config => {
   // dosth before request
-  // config.headers['Content-type'] = 'application/x-www-form-urlencoded'
+  const userToken = getToken() || ''
+  config.headers['Authorization'] = userToken
 
   return config
 }, error => Promise.reject(error))

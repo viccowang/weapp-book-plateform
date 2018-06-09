@@ -2,20 +2,24 @@
     <el-form :model="searchForm" ref="searchForm" :rules="searchRule" label-width="80px" size="mini">
        <el-row>
            <el-col :span="6">
-                <el-form-item label="ISBN" prop="userName">
-                    <el-input v-model="searchForm.userName"></el-input>
+                <el-form-item label="ISBN" prop="isbn">
+                    <el-input v-model="searchForm.isbn"></el-input>
                 </el-form-item>
            </el-col>
             <el-col :span="6">
-                <el-form-item label="书名" prop="company">
-                    <el-input v-model="searchForm.company"></el-input>
+                <el-form-item label="书名" prop="title">
+                    <el-input v-model="searchForm.title"></el-input>
                 </el-form-item>
            </el-col>
             <el-col :span="6">
-                <el-form-item label="区域" prop="sex">
-                    <el-select v-model="searchForm.sex" placeholder="请选择">
-                        <el-option label="男" value="0">男</el-option>
-                        <el-option label="女" value="1">女</el-option>
+                <el-form-item label="所属区域" prop="company_id">
+                    <el-select v-model="searchForm.company_id" placeholder="请选择">
+                        <el-option
+                          v-for="area in companyArea"
+                          :key="area.id"
+                          :label="area.value"
+                          :value="area.id">
+                        </el-option>
                     </el-select>
                 </el-form-item>
            </el-col>
@@ -31,39 +35,45 @@
 </template>
 
 <script>
+// api
+import { getCompanyAreaList } from '@/api/common'
+// custom Validator
+import Validator from '@/utils/extendValidate'
+
 export default {
   name: 'TabsBookQuerySearch',
   data () {
     return {
+      companyArea: [],
       searchForm: {
-        userName: '',
-        company: '',
-        userNo: '',
-        sex: '',
-        startDate: '',
-        endDate: ''
+        isbn: '',
+        title: '',
+        company_id: ''
       },
-      searchRule: {},
-      dateBefore: {
-        disabledDate: (time) => {
-          const endDate = this.searchForm.endDate
-          return endDate === '' ? false : time.getTime() > endDate
-        }
-      },
-      dateAfter: {
-        disabledDate: (time) => {
-          const startDate = this.searchForm.startDate
-          return time.getTime() < startDate
-        }
+      searchRule: {
+        isbn: [
+          { validator: Validator.isbn, trigger: 'blur' }
+        ]
       }
     }
   },
+  async beforeMount () {
+    const companyArea = await getCompanyAreaList()
+    this.companyArea = [].concat(companyArea)
+    if (this.companyArea.length) {
+      this.searchForm.company_id = this.companyArea[0].id
+    }
+  },
+  mounted () {
+    this.search()
+  },
   methods: {
+    search () {
+      this.$emit('search', this.searchForm)
+    },
     onSubmit (formName) {
       this.$refs[formName].validate(valid => {
-      // submit forms
-        // callback
-        this.$emit('resetSearch')
+        this.search()
       })
     },
     resetForm (formName) {
