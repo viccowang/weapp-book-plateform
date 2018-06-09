@@ -17,6 +17,7 @@
                     <el-table-column prop="companyName" label="所属区域"></el-table-column>
                     <el-table-column label="操作" width="150">
                       <template slot-scope="scope">
+                        <el-button size="mini" type="text" @click.stop="editReader(scope.$index, scope.row)">修改</el-button>
                         <el-button size="mini" type="text" @click.stop="deleteReader(scope.$index, scope.row)">删除</el-button>
                       </template>
                     </el-table-column>
@@ -34,6 +35,12 @@
                 </template>
             </common-table>
         </common-wrapper>
+
+        <!-- 用户编辑 -->
+        <edit-reader
+          :isShow.sync="isEditUserDialogVisible"
+          :user.sync="editUser"
+        />
     </div>
 </template>
 
@@ -43,6 +50,7 @@ import CommonTable from '@/components/commonTable'
 import CommonSearch from '@/components/commonSearch'
 import NavButton from '@/components/navButton'
 import UserListSearch from './Components/search'
+import EditReader from './Components/edit'
 
 // api
 import { getReaderList, deleteReader } from '@/api/readerManage'
@@ -53,6 +61,8 @@ export default {
     return {
       searchParams: {},
       selectedUserIds: [],
+      isEditUserDialogVisible: false,
+      editUser: {},
       tableData: [],
       pagination: { // 翻页数据
         pageNum: 1,
@@ -117,8 +127,12 @@ export default {
         }
       } catch (error) {}
     },
-    async deleteReader (indx, row) {
+    async deleteReader (idx, row) {
       this.deleteUser(row)
+    },
+    editReader (idx, row) {
+      this.editUser = row
+      this.isEditUserDialogVisible = true
     }
   },
   components: {
@@ -126,7 +140,8 @@ export default {
     CommonTable,
     CommonSearch,
     NavButton,
-    UserListSearch
+    UserListSearch,
+    EditReader
   }
 }
 </script>
