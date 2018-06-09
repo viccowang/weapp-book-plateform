@@ -76,6 +76,10 @@ export default {
       const queryParams = this.getQueryParams(searchParams)
       this.getBookQueryList(queryParams)
     },
+    queryAfterOperation () {
+      const params = this.getQueryParams(this.searchParams)
+      this.queryList(params)
+    },
     async getBookQueryList (queryParams) {
       const result = await getBookList(queryParams)
       if (result) {
@@ -121,7 +125,8 @@ export default {
       } catch (error) {}
     },
     async deleteBook (indx, row) {
-      this.deleteBooks(row)
+      await this.deleteBooks(row)
+      this.queryAfterOperation()
     }
   },
   components: {

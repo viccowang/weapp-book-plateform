@@ -40,7 +40,7 @@
         <edit-reader
           :isShow.sync="isEditUserDialogVisible"
           :user.sync="editUser"
-          @query="queryAfterEdit"
+          @query="queryAfterOperation"
         />
     </div>
 </template>
@@ -84,7 +84,7 @@ export default {
       const queryParams = this.getQueryParams(searchParams)
       this.getUserQueryList(queryParams)
     },
-    queryAfterEdit () {
+    queryAfterOperation () {
       const params = this.getQueryParams(this.searchParams)
       this.queryList(params)
     },
@@ -133,7 +133,8 @@ export default {
       } catch (error) {}
     },
     async deleteReader (idx, row) {
-      this.deleteUser(row)
+      await this.deleteUser(row)
+      this.queryAfterOperation()
     },
     editReader (idx, row) {
       this.editUser = row
