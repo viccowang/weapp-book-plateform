@@ -75,6 +75,7 @@ export default {
       bookBorrowDate: [],
       searchForm: {
         userId: '',
+        companyId: '',
         bookName: '',
         bookIsbn: '',
         bookBorrowStartDate: '',
@@ -97,6 +98,7 @@ export default {
   },
   beforeMount () {
     this.searchForm.userId = this.user.userId
+    this.searchForm.companyId = this.user.companyId
   },
   methods: {
     // 每当选择日期时格式化为查询条件
