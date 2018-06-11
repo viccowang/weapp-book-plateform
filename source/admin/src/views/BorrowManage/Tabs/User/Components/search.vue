@@ -35,11 +35,14 @@
 </template>
 
 <script>
+// mixin
+import { commonMixinsForSearch } from '@/utils/mixin'
 // api
 import { getCompanyAreaList } from '@/api/common'
 
 export default {
   name: 'TabsUserQuerySearch',
+  mixins: [commonMixinsForSearch],
   data () {
     return {
       companyArea: [],
@@ -57,29 +60,6 @@ export default {
     if (this.companyArea.length) {
       this.searchForm.company_id = this.companyArea[0].id
     }
-  },
-  mounted () {
-    this.search()
-  },
-  methods: {
-    search () {
-      this.$emit('search', this.searchForm)
-    },
-    onSubmit (formName) {
-      this.$refs[formName].validate(valid => {
-        this.search()
-      })
-    },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
-    }
   }
 }
 </script>
-<style lang="scss" scoped>
-.ctrl-buttons {
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom:10px;
-}
-</style>

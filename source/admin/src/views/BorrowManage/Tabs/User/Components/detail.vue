@@ -33,55 +33,25 @@ import moment from 'moment'
 import CommonWrapper from '@/components/commonWrapper'
 import CommonTable from '@/components/commonTable'
 import UserBorrowDetailSearch from './detailSearch'
+// mixin
+import { commonMixins } from '@/utils/mixin'
 
 // api
 import { getBorrowUserQueryDetailList } from '@/api/borrowBook'
 
 export default {
   name: 'UserBorrowDetail',
+  mixins: [commonMixins],
   props: {
     user: {
       type: Object,
       required: true
     }
   },
-  data () {
-    return {
-      searchParams: {},
-      tableData: [],
-      pagination: { // 翻页数据
-        pageNum: 1,
-        pageSize: 10,
-        total: 0
-      }
-    }
-  },
-  mounted () {
-  },
   methods: {
-    getQueryParams (searchParams) {
-      return {
-        ...searchParams,
-        ...this.pagination
-      }
-    },
-    queryList (searchParams) {
-      this.searchParams = searchParams
-      const queryParams = this.getQueryParams(searchParams)
-      this.getUserQueryDetailList(queryParams)
-    },
-    async getUserQueryDetailList (queryParams) {
+    async getQueryList (queryParams) {
       const result = await getBorrowUserQueryDetailList(queryParams)
-      if (result) {
-        this.tableData = result.list
-        this.pagination.pageNum = result.pageNum
-        this.pagination.pageSize = result.pageSize
-        this.pagination.total = result.total
-      }
-    },
-    changePage (pageNum) {
-      this.pagination.pageNum = pageNum
-      this.getUserQueryDetailList(this.searchParams)
+      this.initPagination(result)
     },
     borrowTotalDate (row, column, cellValue, index) {
       const startDate = moment(row.borrowDate)

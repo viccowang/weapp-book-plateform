@@ -51,9 +51,12 @@
 
 <script>
 import moment from 'moment'
+// mixin
+import { commonMixinsForSearch } from '@/utils/mixin'
 
 export default {
   name: 'BookBorrowDetailSearch',
+  mixins: [commonMixinsForSearch],
   props: {
     book: {
       type: Object,
@@ -77,33 +80,12 @@ export default {
   beforeMount () {
     this.searchForm.bookId = this.book.bookId
   },
-  mounted () {
-    this.search()
-  },
   methods: {
-    search () {
-      this.$emit('search', this.searchForm)
-    },
     // 每当选择日期时格式化为查询条件
     handleSelectedDate () {
       this.searchForm.bookBorrowStartDate = moment(this.bookBorrowDate[0]).format('YYYY-MM-DD HH:mm:ss')
       this.searchForm.bookBorrowEndDate = moment(this.bookBorrowDate[1]).format('YYYY-MM-DD HH:mm:ss')
-    },
-    onSubmit (formName) {
-      this.$refs[formName].validate(valid => {
-        this.search()
-      })
-    },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
     }
   }
 }
 </script>
-<style lang="scss" scoped>
-.ctrl-buttons {
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom:10px;
-}
-</style>

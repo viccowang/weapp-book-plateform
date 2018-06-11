@@ -44,54 +44,18 @@ import CommonTable from '@/components/commonTable'
 import CommonSearch from '@/components/commonSearch'
 import NavButton from '@/components/navButton'
 import BookListSearch from './Components/search'
-
+// mixin
+import { commonMixins } from '@/utils/mixin'
 // api
 import { getBookList, deleteBook } from '@/api/bookManage'
 
 export default {
   name: 'BookManagement',
-  data () {
-    return {
-      searchParams: {},
-      selectedBookIds: [],
-      tableData: [],
-      pagination: { // 翻页数据
-        pageNum: 1,
-        pageSize: 10,
-        total: 0
-      }
-    }
-  },
-  mounted () {
-  },
+  mixins: [commonMixins],
   methods: {
-    getQueryParams (searchParams) {
-      return {
-        ...searchParams,
-        ...this.pagination
-      }
-    },
-    queryList (searchParams) {
-      this.searchParams = searchParams
-      const queryParams = this.getQueryParams(searchParams)
-      this.getBookQueryList(queryParams)
-    },
-    queryAfterOperation () {
-      const params = this.getQueryParams(this.searchParams)
-      this.queryList(params)
-    },
-    async getBookQueryList (queryParams) {
+    async getQueryList (queryParams) {
       const result = await getBookList(queryParams)
-      if (result) {
-        this.tableData = result.list
-        this.pagination.pageNum = result.pageNum
-        this.pagination.pageSize = result.pageSize
-        this.pagination.total = result.total
-      }
-    },
-    changePage (pageNum) {
-      this.pagination.pageNum = pageNum
-      this.getBookQueryList(this.searchParams)
+      this.initPagination(result)
     },
     handleSelectionChange (rows) {
       this.selectedBookIds = rows.map(row => row.bookId)

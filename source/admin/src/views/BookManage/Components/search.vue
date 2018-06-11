@@ -30,9 +30,12 @@
 <script>
 // custom Validator
 import Validator from '@/utils/extendValidate'
+// mixin
+import { commonMixinsForSearch } from '@/utils/mixin'
 
 export default {
   name: 'BookListSearch',
+  mixins: [commonMixinsForSearch],
   data () {
     return {
       searchForm: {
@@ -49,29 +52,6 @@ export default {
         ]
       }
     }
-  },
-  mounted () {
-    this.search()
-  },
-  methods: {
-    search () {
-      this.$emit('search', this.searchForm)
-    },
-    onSubmit (formName) {
-      this.$refs[formName].validate(valid => {
-        this.search()
-      })
-    },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
-    }
   }
 }
 </script>
-<style lang="scss" scoped>
-.ctrl-buttons {
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom:10px;
-}
-</style>

@@ -52,54 +52,26 @@ import CommonSearch from '@/components/commonSearch'
 import NavButton from '@/components/navButton'
 import UserListSearch from './Components/search'
 import EditReader from './Components/edit'
+// mixin
+import { commonMixins } from '@/utils/mixin'
 
 // api
 import { getReaderList, deleteReader } from '@/api/readerManage'
 
 export default {
   name: 'UserManagement',
+  mixins: [commonMixins],
   data () {
     return {
-      searchParams: {},
       selectedUserIds: [],
       isEditUserDialogVisible: false,
-      editUser: {},
-      tableData: [],
-      pagination: { // 翻页数据
-        pageNum: 1,
-        pageSize: 10,
-        total: 0
-      }
+      editUser: {}
     }
   },
   methods: {
-    getQueryParams (searchParams) {
-      return {
-        ...searchParams,
-        ...this.pagination
-      }
-    },
-    queryList (searchParams) {
-      this.searchParams = searchParams
-      const queryParams = this.getQueryParams(searchParams)
-      this.getUserQueryList(queryParams)
-    },
-    queryAfterOperation () {
-      const params = this.getQueryParams(this.searchParams)
-      this.queryList(params)
-    },
-    async getUserQueryList (queryParams) {
+    async getQueryList (queryParams) {
       const result = await getReaderList(queryParams)
-      if (result) {
-        this.tableData = result.list
-        this.pagination.pageNum = result.pageNum
-        this.pagination.pageSize = result.pageSize
-        this.pagination.total = result.total
-      }
-    },
-    changePage (pageNum) {
-      this.pagination.pageNum = pageNum
-      this.getUserQueryList(this.searchParams)
+      this.initPagination(result)
     },
     handleSelectionChange (rows) {
       this.selectedUserIds = rows.map(row => row.openId)

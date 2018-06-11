@@ -39,9 +39,12 @@
 import { getCompanyAreaList } from '@/api/common'
 // custom Validator
 import Validator from '@/utils/extendValidate'
+// mixin
+import { commonMixinsForSearch } from '@/utils/mixin'
 
 export default {
   name: 'TabsBookQuerySearch',
+  mixins: [commonMixinsForSearch],
   data () {
     return {
       companyArea: [],
@@ -63,29 +66,6 @@ export default {
     if (this.companyArea.length) {
       this.searchForm.company_id = this.companyArea[0].id
     }
-  },
-  mounted () {
-    this.search()
-  },
-  methods: {
-    search () {
-      this.$emit('search', this.searchForm)
-    },
-    onSubmit (formName) {
-      this.$refs[formName].validate(valid => {
-        this.search()
-      })
-    },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
-    }
   }
 }
 </script>
-<style lang="scss" scoped>
-.ctrl-buttons {
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom:10px;
-}
-</style>

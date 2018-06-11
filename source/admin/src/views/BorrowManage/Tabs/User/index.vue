@@ -40,43 +40,19 @@ import CommonWrapper from '@/components/commonWrapper'
 import CommonTable from '@/components/commonTable'
 import TabsUserQuerySearch from './Components/search'
 import UserBorrowDetail from './Components/detail'
+// mixin
+import { commonMixins } from '@/utils/mixin'
 
 // api
 import { getBorrowUserQueryList } from '@/api/borrowBook'
 
 export default {
   name: 'TabsUserQuery',
-  data () {
-    return {
-      searchParams: {},
-      tableData: [],
-      pagination: { // 翻页数据
-        pageNum: 1,
-        pageSize: 10,
-        total: 0
-      }
-    }
-  },
+  mixins: [commonMixins],
   methods: {
-    getQueryParams (searchParams) {
-      return {
-        ...searchParams,
-        ...this.pagination
-      }
-    },
-    queryList (searchParams) {
-      this.searchParams = searchParams
-      const queryParams = this.getQueryParams(searchParams)
-      this.getUserQueryList(queryParams)
-    },
-    async getUserQueryList (queryParams) {
+    async getQueryList (queryParams) {
       const result = await getBorrowUserQueryList(queryParams)
-      if (result) {
-        this.tableData = result.list
-        this.pagination.pageNum = result.pageNum
-        this.pagination.pageSize = result.pageSize
-        this.pagination.total = result.total
-      }
+      this.initPagination(result)
     },
     showDetail (idx, row) {
       this.$nextPage({
@@ -86,10 +62,6 @@ export default {
         },
         component: UserBorrowDetail
       })
-    },
-    changePage (pageNum) {
-      this.pagination.pageNum = pageNum
-      this.getUserQueryList(this.searchParams)
     }
   },
   components: {

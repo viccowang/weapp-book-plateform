@@ -16,6 +16,12 @@ $base-gray-color: #9E9E9E;
     align-items: center;
     justify-content: center;
 }
+
+.ctrl-buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom:10px;
+}
  
 // 配置居右显示
 .flex-right {
