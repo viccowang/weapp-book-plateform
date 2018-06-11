@@ -2,13 +2,13 @@
     <el-form :model="searchForm" ref="searchForm" :rules="searchRule" label-width="80px" size="mini">
        <el-row>
            <el-col :span="6">
-                <el-form-item label="ISBN" prop="isbn">
-                    <el-input v-model="searchForm.isbn"></el-input>
+                <el-form-item label="ISBN" prop="bookIsbn">
+                    <el-input v-model="searchForm.bookIsbn"></el-input>
                 </el-form-item>
            </el-col>
             <el-col :span="6">
-                <el-form-item label="书名" prop="title">
-                    <el-input v-model="searchForm.title"></el-input>
+                <el-form-item label="书名" prop="bookName">
+                    <el-input v-model="searchForm.bookName"></el-input>
                 </el-form-item>
            </el-col>
             <el-col :span="6">
@@ -49,12 +49,12 @@ export default {
     return {
       companyArea: [],
       searchForm: {
-        isbn: '',
-        title: '',
+        bookIsbn: '',
+        bookName: '',
         company_id: ''
       },
       searchRule: {
-        isbn: [
+        bookIsbn: [
           { validator: Validator.isbn, trigger: 'blur' }
         ]
       }

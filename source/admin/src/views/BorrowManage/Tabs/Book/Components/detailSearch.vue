@@ -20,8 +20,8 @@
                 </el-form-item>
            </el-col>
             <el-col :span="4">
-                <el-form-item label="是否归还" prop="isReturn">
-                    <el-switch v-model="searchForm.isReturn"></el-switch>
+                <el-form-item label="是否归还" prop="isReturnBool">
+                    <el-switch v-model="searchForm.isReturnBool"></el-switch>
                 </el-form-item>
            </el-col>
            <el-col :span="6">
@@ -72,9 +72,15 @@ export default {
         bookBorrowStartDate: '',
         bookBorrowEndDate: '',
         bookBorrowNumberGt: '0',
-        isReturn: false
+        isReturnBool: false,
+        isReturn: 'false'
       },
       searchRule: {}
+    }
+  },
+  watch: {
+    'searchForm.isReturnBool' (value) {
+      this.searchForm.isReturn = value ? 'true' : 'false'
     }
   },
   beforeMount () {
