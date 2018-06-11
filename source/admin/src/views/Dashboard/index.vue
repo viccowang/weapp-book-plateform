@@ -1,7 +1,7 @@
 <template>
   <el-container class="content">
     <div class="welcome">
-      <div class="title">阅乎后台管理平台</div>
+      <div class="title">阅乎-图书借阅管理平台</div>
       <!-- 模块快速导航 -->
       <div class="menu">
         <dashboard-menu-item :menuList="menuList"></dashboard-menu-item>

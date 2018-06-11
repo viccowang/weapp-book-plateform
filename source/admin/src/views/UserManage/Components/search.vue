@@ -63,10 +63,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.ctrl-buttons {
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom:10px;
-}
-</style>
