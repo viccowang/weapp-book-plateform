@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <common-wrapper>
             <user-borrow-detail-search :user="user" @search="queryList" />
         </common-wrapper>
@@ -69,3 +69,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.container{
+  display: flex;
+  flex-direction: column;
+}
+</style>

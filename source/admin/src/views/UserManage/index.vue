@@ -11,7 +11,7 @@
                 <template slot="table">
                 <el-table :data="tableData" stripe @selection-change="handleSelectionChange">
                     <el-table-column type="selection" width="55" />
-                    <el-table-column prop="openId" label="OpenId"></el-table-column>
+                    <!-- <el-table-column prop="openId" label="OpenId"></el-table-column> -->
                     <el-table-column prop="userName" label="真实姓名"></el-table-column>
                     <el-table-column prop="createTime" label="注册日期"></el-table-column>
                     <el-table-column prop="companyName" label="所属区域"></el-table-column>

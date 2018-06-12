@@ -15,7 +15,7 @@
                     <el-table-column prop="bookIsbn" label="ISBN"></el-table-column>
                     <el-table-column prop="total" label="总量"></el-table-column>
                     <el-table-column prop="stockNumber" label="库存"></el-table-column>
-                    <el-table-column prop="grade" label="借阅评价"></el-table-column>
+                    <el-table-column prop="grade" label="借阅评价" :formatter="rateFormat"></el-table-column>
                     <el-table-column label="操作" width="150">
                       <template slot-scope="scope">
                         <el-button size="mini" type="text" @click.stop="deleteBook(scope.$index, scope.row)">删除</el-button>
@@ -91,6 +91,10 @@ export default {
     async deleteBook (indx, row) {
       await this.deleteBooks(row)
       this.queryAfterOperation()
+    },
+    rateFormat (row, column, cellValue, index) {
+      const value = cellValue !== '' ? cellValue : '0.0'
+      return parseFloat(value).toFixed(1)
     }
   },
   components: {

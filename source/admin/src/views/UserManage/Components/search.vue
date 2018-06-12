@@ -12,8 +12,8 @@
                 </el-form-item>
            </el-col>
             <el-col :span="6">
-                <el-form-item label="所属区域" prop="company_id">
-                    <el-select v-model="searchForm.company_id" placeholder="请选择">
+                <el-form-item label="所属区域" prop="companyId">
+                    <el-select v-model="searchForm.companyId" placeholder="请选择">
                         <el-option
                           v-for="area in companyArea"
                           :key="area.id"
@@ -49,7 +49,7 @@ export default {
       searchForm: {
         openId: '',
         userName: '',
-        company_id: ''
+        companyId: ''
       },
       searchRule: {}
     }
@@ -58,8 +58,9 @@ export default {
     const companyArea = await getCompanyAreaList()
     this.companyArea = [].concat(companyArea)
     if (this.companyArea.length) {
-      this.searchForm.company_id = this.companyArea[0].id
+      this.searchForm.companyId = this.companyArea[0].id
     }
+    this.search()
   }
 }
 </script>

@@ -21,13 +21,18 @@
            </el-col>
             <el-col :span="4">
                 <el-form-item label="是否归还" prop="isReturnBool">
-                    <el-switch v-model="searchForm.isReturnBool"></el-switch>
+                  <el-select v-model="searchForm.isReturn">
+                      <el-option label="全部" value=""></el-option>
+                      <el-option label="已归还" value="true"></el-option>
+                      <el-option label="未归还" value="false"></el-option>
+                  </el-select>
+                    <!-- <el-switch v-model="searchForm.isReturnBool"></el-switch> -->
                 </el-form-item>
            </el-col>
            <el-col :span="6">
                 <el-form-item label="借阅天数" prop="bookBorrowNumberGt">
                     <el-select v-model="searchForm.bookBorrowNumberGt" placeholder="请选择">
-                        <el-option label="所有借阅" value="0"></el-option>
+                        <el-option label="所有借阅" value=""></el-option>
                         <el-option label="超过半月" value="15"></el-option>
                         <el-option label="超过一个月" value="30"></el-option>
                         <el-option label="超过三个月" value="90"></el-option>
@@ -71,20 +76,23 @@ export default {
         bookBorrowUserName: '',
         bookBorrowStartDate: '',
         bookBorrowEndDate: '',
-        bookBorrowNumberGt: '0',
-        isReturnBool: false,
-        isReturn: 'false'
+        bookBorrowNumberGt: '',
+        // isReturnBool: false,
+        isReturn: ''
       },
       searchRule: {}
     }
   },
-  watch: {
-    'searchForm.isReturnBool' (value) {
-      this.searchForm.isReturn = value ? 'true' : 'false'
-    }
-  },
+  // watch: {
+  //   'searchForm.isReturnBool' (value) {
+  //     this.searchForm.isReturn = value ? 'true' : 'false'
+  //   }
+  // },
   beforeMount () {
     this.searchForm.bookId = this.book.bookId
+  },
+  mounted () {
+    this.search()
   },
   methods: {
     // 每当选择日期时格式化为查询条件

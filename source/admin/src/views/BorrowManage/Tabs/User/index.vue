@@ -7,7 +7,7 @@
             <common-table size="small">
                 <template slot="table">
                 <el-table :data="tableData" stripe >
-                    <el-table-column prop="openId" label="OpenId" width="150"></el-table-column>
+                    <!-- <el-table-column prop="openId" label="OpenId" width="150"></el-table-column> -->
                     <el-table-column prop="userName" label="真实姓名"></el-table-column>
                     <el-table-column prop="borrowTotal" label="借阅书籍数"></el-table-column>
                     <el-table-column prop="unReturnTotal" label="未归还书籍数"></el-table-column>

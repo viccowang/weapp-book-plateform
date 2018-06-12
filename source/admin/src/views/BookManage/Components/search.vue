@@ -75,6 +75,7 @@ export default {
     if (this.companyArea.length) {
       this.searchForm.companyId = this.companyArea[0].id
     }
+    this.search()
   }
 }
 </script>

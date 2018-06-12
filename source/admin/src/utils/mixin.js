@@ -27,14 +27,14 @@ export const commonMixins = {
     },
     // 查询列表
     queryList (searchParams) {
-      this.searchParams = searchParams
-      const queryParams = this.getQueryParams(searchParams)
+      this.searchParams = searchParams || this.searchParams
+      const queryParams = this.getQueryParams(this.searchParams)
       this.getQueryList(queryParams)
     },
     // 翻页
     changePage (pageNum) {
       this.pagination.pageNum = pageNum
-      this.getQueryList(this.searchParams)
+      this.queryList()
     },
     initPagination (result) {
       if (result) {
@@ -54,9 +54,6 @@ export const commonMixins = {
 
 // 通用查询混入
 export const commonMixinsForSearch = {
-  mounted () {
-    this.search()
-  },
   methods: {
     search () {
       this.$emit('search', this.searchForm)

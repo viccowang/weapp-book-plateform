@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <common-wrapper>
           <book-borrow-detail-search :book="book" @search="queryList"></book-borrow-detail-search>
         </common-wrapper>
@@ -71,3 +71,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.container{
+  display: flex;
+  flex-direction: column;
+}
+</style>
