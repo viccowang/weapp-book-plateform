@@ -1,6 +1,7 @@
 <template>
     <div>
         <nav-button>
+          <el-button @click="addBooks">添加图书</el-button>
           <el-button @click="deleteSelectedBooks">批量删除</el-button>
         </nav-button>
         <common-wrapper>
@@ -35,6 +36,12 @@
                 </template>
             </common-table>
         </common-wrapper>
+
+        <!-- create/edit books dialog -->
+        <create-books
+          :isShow.sync="showBookDialog"
+          :isCreate="isBookCreate"
+        />
     </div>
 </template>
 
@@ -49,9 +56,18 @@ import { commonMixins } from '@/utils/mixin'
 // api
 import { getBookList, deleteBook } from '@/api/bookManage'
 
+// update/add component
+import CreateBooks from './Components/update.vue'
+
 export default {
   name: 'BookManagement',
   mixins: [commonMixins],
+  data () {
+    return {
+      showBookDialog: false,
+      isBookCreate: false
+    }
+  },
   methods: {
     async getQueryList (queryParams) {
       const result = await getBookList(queryParams)
@@ -59,6 +75,10 @@ export default {
     },
     handleSelectionChange (rows) {
       this.selectedBookIds = rows.map(row => row.bookId)
+    },
+    addBooks () {
+      this.showBookDialog = true
+      this.isBookCreate = true
     },
     deleteSelectedBooks () {
       this.deleteBooks(this.selectedBookIds)
@@ -102,7 +122,8 @@ export default {
     CommonTable,
     CommonSearch,
     NavButton,
-    BookListSearch
+    BookListSearch,
+    CreateBooks
   }
 }
 </script>
